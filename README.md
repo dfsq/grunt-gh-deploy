@@ -17,21 +17,21 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-gh-pages');
 ```
 
-## The "gh_pages" task
+## The "ghPages" task
 
 ### Overview
-In your project's Gruntfile, add a section named `gh_pages` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `ghPages` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  gh_pages: {
-    options: {
-      // Task-specific options go here.
+    ghPages: {
+        options: {
+            // Task-specific options go here.
+        },
+        your_target: {
+            // Target-specific file lists and/or options go here.
+        },
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
 });
 ```
 
@@ -56,12 +56,12 @@ In this example, the default options are used to do something with whatever. So 
 
 ```js
 grunt.initConfig({
-  gh_pages: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    ghPages: {
+        options: {},
+        files: {
+            'dest/default_options': ['src/testing', 'src/123'],
+        },
     },
-  },
 });
 ```
 
@@ -70,15 +70,15 @@ In this example, custom options are used to do something else with whatever else
 
 ```js
 grunt.initConfig({
-  gh_pages: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
+    ghPages: {
+        options: {
+            separator: ': ',
+            punctuation: ' !!!',
+        },
+        files: {
+            'dest/default_options': ['src/testing', 'src/123'],
+        },
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
 });
 ```
 
