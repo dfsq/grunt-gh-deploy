@@ -18,24 +18,16 @@ module.exports = function (grunt) {
 			tests: ['tmp']
 		},
 
+		shell: {
+			prepare: {
+				command: 'cd tmp && git init'
+			}
+		},
+
 		// Configuration to be run (and then tested).
 		ghPages: {
-			default_options: {
-				options: {
-				},
-				files: {
-					'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-				}
-			},
-			custom_options: {
-				options: {
-					separator: ': ',
-					punctuation: ' !!!'
-				},
-				files: {
-					'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-				}
-			}
+			repositiry: './tmp/',
+			branch: 'test-branch'
 		},
 
 		// Unit tests.
@@ -51,10 +43,18 @@ module.exports = function (grunt) {
 	// These plugins provide necessary tasks.
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-nodeunit');
+	grunt.loadNpmTasks('grunt-shell');
+
+	// Create git repository for testing purposes in temporary folder
+	grunt.registerTask('prepare', 'Prepare dummy temp repository for testing', function() {
+		grunt.file.mkdir('tmp/');
+		grunt.task.run('shell:prepare');
+	});
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'ghPages', 'nodeunit']);
+	grunt.registerTask('test', ['clean', 'prepare', 'ghPages', 'nodeunit']);
+	grunt.registerTask('testnode', ['nodeunit']);
 
 	// By default, lint and run all tests.
 	grunt.registerTask('default', ['test']);
