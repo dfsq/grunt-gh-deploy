@@ -27,7 +27,8 @@ module.exports = function (grunt) {
 		// Configuration to be run (and then tested).
 		ghPages: {
 			repositiry: './tmp/',
-			branch: 'test-branch'
+			branch: 'test-branch',
+			deployPath: 'dist/'
 		},
 
 		// Unit tests.

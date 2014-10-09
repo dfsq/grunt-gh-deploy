@@ -8,6 +8,16 @@
 
 'use strict';
 
+var exec = require('child_process').exec;
+
+function runCmd(cmd, callback) {
+	exec(cmd, undefined, function (err, stdout, stderr) {
+		if (typeof callback === 'function') {
+			callback.call(this, err, stdout, stderr);
+		}
+	});
+}
+
 module.exports = function (grunt) {
 
 	// Please see the Grunt documentation for more information regarding task
@@ -22,6 +32,23 @@ module.exports = function (grunt) {
 		});
 
 		console.log('ghPages task', options);
+
+		var command = [
+			'mkdir .tmp-ghpages',
+			'cd .tmp-ghpages',
+			'git init',
+			'git remote add -t ' + options.branch + ' -f origin ' + options.repository,
+			'git checkout ' + options.branch,
+			'find -not -path "./.git/*" -not -name ".git" -delete',
+			'cp -r ../' + options.deployPath + '/* ./',
+			'git add -A',
+			'git commit -m "Some message"',
+			'git push origin ' + options.branch
+		].join(' && ');
+
+		console.log(command);
+
+
 
 		// Iterate over all specified file groups.
 //		this.files.forEach(function (f) {
