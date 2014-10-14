@@ -26,9 +26,11 @@ module.exports = function (grunt) {
 
 		// Configuration to be run (and then tested).
 		ghPages: {
-			repositiry: './tmp/',
-			branch: 'test-branch',
-			deployPath: 'dist/'
+			options: {
+				repository: 'tmp/', // no leading slash!
+				branch: 'test-branch',
+				deployPath: 'dist' // no trailing slash!, relative to cwd
+			}
 		},
 
 		// Unit tests.
@@ -48,13 +50,14 @@ module.exports = function (grunt) {
 
 	// Create git repository for testing purposes in temporary folder
 	grunt.registerTask('prepare', 'Prepare dummy temp repository for testing', function() {
-		grunt.file.mkdir('tmp/');
+		grunt.file.mkdir('tmp');
+		grunt.file.mkdir('dist');
 		grunt.task.run('shell:prepare');
 	});
 
 	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
 	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'prepare', 'ghPages', 'nodeunit']);
+	grunt.registerTask('test', ['clean', 'prepare', 'ghPages', /*'nodeunit'*/]);
 	grunt.registerTask('testnode', ['nodeunit']);
 
 	// By default, lint and run all tests.
