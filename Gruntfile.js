@@ -20,7 +20,16 @@ module.exports = function (grunt) {
 
 		shell: {
 			prepare: {
-				command: 'cd tmp && git init'
+				command: [
+					'cd tmp',
+					'git init',
+					'git checkout -b test-branch',
+					'touch test-file',
+					'git add .',
+					'git commit -m "test file"',
+					'git rm test-file',
+					'git commit -m "removed"'
+				].join(' && ')
 			}
 		},
 

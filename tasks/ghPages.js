@@ -11,9 +11,9 @@
 var exec = require('child_process').exec;
 
 function runCmd(cmd, callback) {
-	exec(cmd, undefined, function (err, stdout, stderr) {
+	exec(cmd, function (err, stdout, stderr) {
 		if (typeof callback === 'function') {
-			callback.call(this, err, stdout, stderr);
+			callback(stdout);
 		}
 	});
 }
@@ -24,6 +24,8 @@ module.exports = function (grunt) {
 	// creation: http://gruntjs.com/creating-tasks
 
 	grunt.registerTask('ghPages', 'Grunt plugin for easy deployment to ghPages branch.', function () {
+
+		var cb = this.async();
 
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({
@@ -62,9 +64,10 @@ module.exports = function (grunt) {
 			'git push origin ' + options.branch
 		].join(' && ');
 
-		console.log(command);
-		runCmd(command, function() {
-			console.log('Result', arguments);
+		//console.log(command);
+		runCmd(command, function(result) {
+			console.log('Result', result);
+			cb();
 		});
 
 	});
