@@ -52,33 +52,28 @@ A string value that is used to do something else with whatever else.
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+The minimum configuration must include the path to repository and path to directory with files to deploy. For example:
 
 ```js
-grunt.initConfig({
-    ghPages: {
-        options: {},
-        files: {
-            'dest/default_options': ['src/testing', 'src/123'],
-        },
-    },
-});
+ghPages: {
+	options: {
+		repository: 'https://github.com/dfsq/angular-google-tasks.git',
+		deployPath: 'dist'
+	}
+},
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Other options
+There are several additional configuration options: name of the branch to push deployed files and optional commit message.
 
 ```js
 grunt.initConfig({
     ghPages: {
-        options: {
-            separator: ': ',
-            punctuation: ' !!!',
-        },
-        files: {
-            'dest/default_options': ['src/testing', 'src/123'],
-        },
-    },
+    	repository: 'https://github.com/dfsq/angular-google-tasks.git',
+    	branch: 'release-branch',
+    	deployPath: 'dist',
+    	message: 'Auto deplyment ' + grunt.template.today()
+    }
 });
 ```
 

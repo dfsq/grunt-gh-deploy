@@ -23,12 +23,10 @@ module.exports = function (grunt) {
 				command: [
 					'cd tmp',
 					'git init',
-					'git checkout -b test-branch',
 					'touch test-file',
 					'git add .',
 					'git commit -m "test file"',
-					'git rm test-file',
-					'git commit -m "removed"'
+					'git checkout -b test-branch',
 				].join(' && ')
 			}
 		},
