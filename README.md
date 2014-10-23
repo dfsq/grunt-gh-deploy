@@ -25,29 +25,36 @@ In your project's Gruntfile, add a section named `ghPages` to the data object pa
 ```js
 grunt.initConfig({
     ghPages: {
-        options: {
-            // Task-specific options go here.
-        },
-        your_target: {
-            // Target-specific file lists and/or options go here.
-        },
+        // Task options go here
     },
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.repository
 Type: `String`
-Default value: `',  '`
+Default value: `null`
 
-A string value that is used to do something with whatever.
+A path to Git repository the task should deploy to.
 
-#### options.punctuation
+#### options.branch
 Type: `String`
-Default value: `'.'`
+Default value: `'gh-pages'`
 
-A string value that is used to do something else with whatever else.
+The name of the remote branch in the repository task should deploy to.
+
+#### options.deployPath
+Type: `String`
+Default value: `null`
+
+Relative path to folder with build ready to deploy version of the code. Typically this is a result of previous build task.
+
+#### options.message
+Type: `String`
+Default value: `'Deployment ' + grunt.template.today()`
+
+Commit message to deployment branch.
 
 ### Usage Examples
 
