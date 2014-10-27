@@ -8,15 +8,7 @@
 
 'use strict';
 
-var exec = require('child_process').exec;
-
-function runCmd(cmd, callback) {
-	exec(cmd, function (err, stdout, stderr) {
-		if (typeof callback === 'function') {
-			callback(stdout);
-		}
-	});
-}
+var execCmd = require('./execCmd');
 
 module.exports = function (grunt) {
 
@@ -65,7 +57,7 @@ module.exports = function (grunt) {
 		].join(' && ');
 
 		//console.log(command);
-		runCmd(command, function(result) {
+		execCmd(command, function(result) {
 			console.log('Result', result);
 			cb();
 		});

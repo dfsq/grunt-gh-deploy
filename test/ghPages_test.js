@@ -1,15 +1,6 @@
 'use strict';
 
-var grunt = require('grunt'),
-	exec  = require('child_process').exec;
-
-function runCmd(cmd, callback) {
-	exec(cmd, undefined, function (err, stdout, stderr) {
-		if (typeof callback === 'function') {
-			callback.call(this, err, stdout, stderr);
-		}
-	});
-}
+var execCmd = require('../tasks/execCmd');
 
 /*
  ======== A Handy Little Nodeunit Reference ========
@@ -31,13 +22,22 @@ function runCmd(cmd, callback) {
  test.ifError(value)
  */
 
+/**
+ * Compare with last commit git log information:
+ * git log --name-status --pretty=oneline -1
+ */
 exports.ghPages = {
 
-	test1: function(test) {
-		runCmd('cd tmp && ls -la', function(err, stdout, stderr) {
-			console.log(stdout);
-			test.done();
-		});
+	shoulModifyFile: function(test) {
+		test.done();
+	},
+
+	shouldAddNewFile: function(test) {
+		test.done();
+	},
+	
+	shouldDeleteFile: function(test) {
+		test.done();
 	}
 
 //	setUp: function (done) {
