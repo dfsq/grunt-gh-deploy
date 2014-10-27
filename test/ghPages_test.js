@@ -6,60 +6,36 @@ var execCmd = require('../tasks/execCmd');
  ======== A Handy Little Nodeunit Reference ========
  https://github.com/caolan/nodeunit
 
- Test methods:
- test.expect(numAssertions)
- test.done()
- Test assertions:
- test.ok(value, [message])
- test.equal(actual, expected, [message])
- test.notEqual(actual, expected, [message])
- test.deepEqual(actual, expected, [message])
- test.notDeepEqual(actual, expected, [message])
- test.strictEqual(actual, expected, [message])
- test.notStrictEqual(actual, expected, [message])
- test.throws(block, [error], [message])
- test.doesNotThrow(block, [error], [message])
- test.ifError(value)
- */
-
 /**
  * Compare with last commit git log information:
  * git log --name-status --pretty=oneline -1
+ * see: http://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
  */
 exports.ghPages = {
+	
+	setUp: function(callback) {
+		this.command = [
+			'cd .tmp-ghpages',
+			'echo $(git log --name-status --pretty=oneline -1)'
+		].join(' && ');
+		callback();
+	},
 
-	shoulModifyFile: function(test) {
-		test.done();
+	shouldModifyFile: function(test) {
+		execCmd(this.command, function(stdout) {
+			test.ok(stdout.indexOf('M test-file.txt') !== -1, 'should modify "test-file.txt"');
+			test.done();
+		});
 	},
 
 	shouldAddNewFile: function(test) {
-		test.done();
+		execCmd(this.command, function(stdout) {
+			test.ok(stdout.indexOf('A new-file.txt') !== -1, 'should add "new-file.txt"');
+			test.done();
+		});
 	},
 	
 	shouldDeleteFile: function(test) {
 		test.done();
 	}
-
-//	setUp: function (done) {
-//		// make some commits here for each test
-//		done();
-//	},
-//	default_options: function (test) {
-//		test.expect(1);
-//
-//		var actual = grunt.file.read('tmp/default_options');
-//		var expected = grunt.file.read('test/expected/default_options');
-//		test.equal(actual, expected, 'should describe what the default behavior is.');
-//
-//		test.done();
-//	},
-//	custom_options: function (test) {
-//		test.expect(1);
-//
-//		var actual = grunt.file.read('tmp/custom_options');
-//		var expected = grunt.file.read('test/expected/custom_options');
-//		test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-//
-//		test.done();
-//	},
 };
