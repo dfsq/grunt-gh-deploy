@@ -84,8 +84,11 @@ grunt.initConfig({
 });
 ```
 
+#### Notes
+Depending on your system git setup you may be asked to input github username and password before pushing to remote repository.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+_(Nothing yet)_ Initial basic version is released.
