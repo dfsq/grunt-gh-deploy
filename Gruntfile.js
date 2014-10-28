@@ -24,6 +24,7 @@ module.exports = function (grunt) {
 					'cd tmp',
 					'git init',
 					'touch test-file.txt',
+					'touch old-file.txt',
 					'git add .',
 					'git commit -m "test file created"',
 					'git checkout -b test-branch',

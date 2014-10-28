@@ -36,6 +36,9 @@ exports.ghPages = {
 	},
 	
 	shouldDeleteFile: function(test) {
-		test.done();
+		execCmd(this.command, function(stdout) {
+			test.ok(stdout.indexOf('D old-file.txt') !== -1, 'should remove "old-file.txt"');
+			test.done();
+		});
 	}
 };
