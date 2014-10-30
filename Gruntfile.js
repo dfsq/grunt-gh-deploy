@@ -10,18 +10,20 @@
 
 module.exports = function (grunt) {
 
+	var tmpPath = '.grunt/grunt-gh-pages/';
+	
 	// Project configuration.
 	grunt.initConfig({
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: ['tmp', '.tmp-ghpages', 'dist']
+			tests: [tmpPath + 'tmp', tmpPath + '.tmp-ghpages', tmpPath + 'dist']
 		},
 
 		shell: {
 			prepare: {
 				command: [
-					'cd tmp',
+					'cd ' + tmpPath + 'tmp',
 					'git init',
 					'touch test-file.txt',
 					'touch old-file.txt',
@@ -35,9 +37,9 @@ module.exports = function (grunt) {
 		// Configuration to be run (and then tested).
 		ghPages: {
 			options: {
-				repository: 'tmp/', // no leading slash!
+				repository: tmpPath + 'tmp/', // no leading slash!
 				branch: 'test-branch',
-				deployPath: 'dist' // no trailing slash!, relative to cwd
+				deployPath: tmpPath + 'dist' // no trailing slash!, relative to cwd
 			}
 		},
 
@@ -58,10 +60,10 @@ module.exports = function (grunt) {
 
 	// Create git repository for testing purposes in temporary folder
 	grunt.registerTask('prepare', 'Prepare dummy temp repository for testing', function() {
-		grunt.file.mkdir('tmp');
-		grunt.file.mkdir('dist');
-		grunt.file.write('dist/test-file.txt', 'some new content');
-		grunt.file.write('dist/new-file.txt', '');
+		grunt.file.mkdir(tmpPath + 'tmp');
+		grunt.file.mkdir(tmpPath + 'dist');
+		grunt.file.write(tmpPath + 'dist/test-file.txt', 'some new content');
+		grunt.file.write(tmpPath + 'dist/new-file.txt', '');
 		grunt.task.run('shell:prepare');
 	});
 

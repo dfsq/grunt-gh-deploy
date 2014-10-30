@@ -8,7 +8,8 @@
 
 'use strict';
 
-var execCmd = require('./execCmd');
+var execCmd = require('./execCmd'),
+	tmpPath = '.grunt/grunt-gh-pages/';
 
 module.exports = function (grunt) {
 
@@ -42,15 +43,22 @@ module.exports = function (grunt) {
 			return false;
 		}
 
+		console.log('deploy', options.deployPath);
+		
 		var command = [
-			'rm -rf .tmp-ghpages',
-			'mkdir .tmp-ghpages',
-			'cd .tmp-ghpages',
+			'rm -rf ' + tmpPath + 'tmp-ghpages',
+			'mkdir -p ' + tmpPath + 'tmp-ghpages',
+			
+			// Can't cd here before adding origin..
+			'cd ' + tmpPath + 'tmp-ghpages',
+			
 			'git init',
-			'git remote add -t ' + options.branch + ' -f origin ../' + options.repository,
+			'git remote add -t ' + options.branch + ' -f origin ' + options.repository,
 			'git checkout ' + options.branch,
 			'find -not -path "./.git/*" -not -name ".git" -delete',
-			'cp -r ../' + options.deployPath + '/* ./',
+			
+			'cp -r ' + options.deployPath + '/* ./' + tmpPath + 'tmp-ghpages',
+			
 			'git add -A',
 			'git commit -m "' + options.message + '"',
 			'git push origin ' + options.branch
