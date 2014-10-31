@@ -37,9 +37,9 @@ module.exports = function (grunt) {
 		// Configuration to be run (and then tested).
 		ghPages: {
 			options: {
-				repository: tmpPath + 'tmp/', // no leading slash!
+				repository: '../tmp',
 				branch: 'test-branch',
-				deployPath: tmpPath + 'dist' // no trailing slash!, relative to cwd
+				deployPath: '../dist' // no trailing slash!, relative to cwd
 			}
 		},
 

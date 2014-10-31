@@ -38,18 +38,19 @@ module.exports = function (grunt) {
 			return false;
 		}
 
-		if (!grunt.file.isDir(options.deployPath)) {
+		// Since deploy path is going to be use when working directory is .grunt/grunt-gh-pages/tmp-ghpages
+		// Need to check that deployPath is directory relatively to it 
+		if (!grunt.file.isDir(tmpPath + 'tmp-ghpage/' + options.deployPath)) {
 			grunt.log.error('Deployment path "' + options.deployPath + '" is not directory. Nothing to deploy.');
 			return false;
 		}
 
-		console.log('deploy', options.deployPath);
+		console.log('deploy', options);
 		
 		var command = [
 			'rm -rf ' + tmpPath + 'tmp-ghpages',
 			'mkdir -p ' + tmpPath + 'tmp-ghpages',
 			
-			// Can't cd here before adding origin..
 			'cd ' + tmpPath + 'tmp-ghpages',
 			
 			'git init',
@@ -57,7 +58,7 @@ module.exports = function (grunt) {
 			'git checkout ' + options.branch,
 			'find -not -path "./.git/*" -not -name ".git" -delete',
 			
-			'cp -r ' + options.deployPath + '/* ./' + tmpPath + 'tmp-ghpages',
+			'cp -r ' + options.deployPath + '/* ./',
 			
 			'git add -A',
 			'git commit -m "' + options.message + '"',
