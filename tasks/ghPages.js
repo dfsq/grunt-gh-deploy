@@ -29,24 +29,19 @@ module.exports = function (grunt) {
 		});
 
 		if (!options.repository) {
-			grunt.log.error('Repository is required.');
-			return false;
+			grunt.fail.fatal('Repository is required.');
 		}
 
 		if (!options.deployPath) {
-			grunt.log.error('Deployment path is required.');
-			return false;
+			grunt.fail.fatal('Deployment path is required.');
 		}
 
 		// Since deploy path is going to be use when working directory is .grunt/grunt-gh-pages/tmp-ghpages
 		// Need to check that deployPath is directory relatively to it 
 		if (!grunt.file.isDir(tmpPath + 'tmp-ghpage/' + options.deployPath)) {
-			grunt.log.error('Deployment path "' + options.deployPath + '" is not directory. Nothing to deploy.');
-			return false;
+			grunt.fail.fatal('Deployment path "' + options.deployPath + '" is not directory. Nothing to deploy.');
 		}
 
-		console.log('deploy', options);
-		
 		var command = [
 			'rm -rf ' + tmpPath + 'tmp-ghpages',
 			'mkdir -p ' + tmpPath + 'tmp-ghpages',
