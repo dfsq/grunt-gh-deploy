@@ -36,19 +36,19 @@ grunt.initConfig({
 Type: `String`
 Default value: `null`
 
-A path to Git repository the task should deploy to.
+A path to Git repository to deploy to. Can be local file system repository (absolute path) or remote URL.
 
 #### options.branch
 Type: `String`
 Default value: `'gh-pages'`
 
-The name of the remote branch in the repository task should deploy to.
+The name of the branch in the repository to deploy to.
 
 #### options.deployPath
 Type: `String`
 Default value: `null`
 
-Relative path to folder with build ready to deploy version of the code. Typically this is a result of previous build task.
+Path to the folder with build files to deploy, relative to Gruntfile. Typically this is a result of previous build task.
 
 #### options.message
 Type: `String`
