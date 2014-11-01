@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: [tmpPath + 'tmp', tmpPath + 'dist']
+			tests: [tmpPath + 'tmp', tmpPath + 'dist', tmpPath + 'tmp-ghpages']
 		},
 
 		shell: {
@@ -30,6 +30,7 @@ module.exports = function (grunt) {
 					'git add .',
 					'git commit -m "test file created"',
 					'git checkout -b test-branch',
+					'git checkout master'
 				].join(' && ')
 			}
 		},

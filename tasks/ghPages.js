@@ -11,6 +11,10 @@
 var execCmd = require('./execCmd'),
 	tmpPath = '.grunt/grunt-gh-pages/';
 
+/**
+ * TODO: options.message "last" to use last commit message for deployment? (git log -1 --pretty=%B)
+ * TODO: how to clean up tmp-ghpages after the task? Can't do it here because tests will fail.
+ */
 module.exports = function (grunt) {
 
 	// Please see the Grunt documentation for more information regarding task
@@ -28,8 +32,6 @@ module.exports = function (grunt) {
 			message: 'Deployment ' + grunt.template.today()
 		});
 		
-		// TODO: options.message "last" to use last commit message for deployment? (git log -1 --pretty=%B)
-
 		if (!options.repository) {
 			grunt.fail.fatal('Repository is required.');
 		}
@@ -59,15 +61,12 @@ module.exports = function (grunt) {
 			
 			'git add -A',
 			'git commit -m "' + options.message + '"',
-			'git push origin ' + options.branch,
-
-//			'cd ..',
-//			'rm -rf tmp-ghpages'
+			'git push origin ' + options.branch
 		].join(' && ');
 
 		//console.log(command);
-		execCmd(command, function(result) {
-			console.log('Result', result);
+		execCmd(command, function(result, err) {
+			console.log('Result', result, err);
 			cb();
 		});
 
