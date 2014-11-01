@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: [tmpPath + 'tmp', tmpPath + '.tmp-ghpages', tmpPath + 'dist']
+			tests: [tmpPath + 'tmp', tmpPath + 'dist']
 		},
 
 		shell: {
@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 			options: {
 				repository: '../tmp',
 				branch: 'test-branch',
-				deployPath: '../dist' // no trailing slash!, relative to cwd
+				deployPath: tmpPath + 'dist' // no trailing slash!, relative to cwd
 			}
 		},
 
@@ -67,12 +67,14 @@ module.exports = function (grunt) {
 		grunt.task.run('shell:prepare');
 	});
 
-	// Whenever the "test" task is run, first clean the "tmp" dir, then run this
-	// plugin's task(s), then test the result.
-	grunt.registerTask('test', ['clean', 'prepare', 'ghPages', 'nodeunit']);
-	grunt.registerTask('testnode', ['nodeunit']);
+	grunt.registerTask('test', [
+		'clean', 
+		'prepare', 
+		'ghPages', 
+		'nodeunit',
+		'clean'
+	]);
 
-	// By default, lint and run all tests.
 	grunt.registerTask('default', ['test']);
 
 };

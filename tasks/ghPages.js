@@ -27,6 +27,8 @@ module.exports = function (grunt) {
 			deployPath: null,
 			message: 'Deployment ' + grunt.template.today()
 		});
+		
+		// TODO: options.message "last" to use last commit message for deployment? (git log -1 --pretty=%B)
 
 		if (!options.repository) {
 			grunt.fail.fatal('Repository is required.');
@@ -38,7 +40,7 @@ module.exports = function (grunt) {
 
 		// Since deploy path is going to be use when working directory is .grunt/grunt-gh-pages/tmp-ghpages
 		// Need to check that deployPath is directory relatively to it 
-		if (!grunt.file.isDir(tmpPath + 'tmp-ghpage/' + options.deployPath)) {
+		if (!grunt.file.isDir(options.deployPath)) {
 			grunt.fail.fatal('Deployment path "' + options.deployPath + '" is not directory. Nothing to deploy.');
 		}
 
@@ -53,11 +55,14 @@ module.exports = function (grunt) {
 			'git checkout ' + options.branch,
 			'find -not -path "./.git/*" -not -name ".git" -delete',
 			
-			'cp -r ' + options.deployPath + '/* ./',
+			'cp -r ../../../' + options.deployPath + '/* ./',
 			
 			'git add -A',
 			'git commit -m "' + options.message + '"',
-			'git push origin ' + options.branch
+			'git push origin ' + options.branch,
+
+//			'cd ..',
+//			'rm -rf tmp-ghpages'
 		].join(' && ');
 
 		//console.log(command);
