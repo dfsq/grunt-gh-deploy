@@ -1,4 +1,4 @@
-# grunt-gh-pages
+# grunt-gh-pages [![Build Status](https://travis-ci.org/dfsq/grunt-gh-pages.svg?branch=master)](https://travis-ci.org/dfsq/grunt-gh-pages)
 
 > Grunt plugin for easy deployment to ghPages branch.
 
