@@ -1,6 +1,6 @@
 {
 	"name": "grunt-gh-pages",
-	"description": "Grunt plugin for easy deployment to ghPages branch.",
+	"description": "Grunt plugin for easy deployment to Github ghPages branch.",
 	"version": "0.1.0",
 	"homepage": "https://github.com/dfsq/grunt-gh-pages",
 	"author": {
@@ -43,7 +43,8 @@
 		"gruntplugin",
 		"deploy",
 		"build",
-		"ghPages",
-		"github"
+		"github",
+		"gh-pages",
+		"ghPages"
 	]
 }
