@@ -11,7 +11,7 @@ var execCmd = require('../tasks/execCmd');
  * git log --name-status --pretty=oneline -1
  * see: http://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History
  */
-exports.ghPages = {
+exports.ghDeploy = {
 	
 	setUp: function(callback) {
 		this.command = [
