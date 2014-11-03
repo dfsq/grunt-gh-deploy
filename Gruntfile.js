@@ -1,6 +1,6 @@
 /*
- * grunt-gh-pages
- * https://github.com/dfsq/grunt-gh-pages
+ * grunt-gh-deploy
+ * https://github.com/dfsq/grunt-gh-deploy
  *
  * Copyright (c) 2014 Aliaksandr Astashenkau
  * Licensed under the MIT license.
@@ -24,8 +24,8 @@ module.exports = function (grunt) {
 			prepare: {
 				command: [
 					// Need to set up git user config
-					'git config --global user.email "gh-pages.test@example.com"',
-					'git config --global user.name "gh-pages.test"',
+					'git config --global user.email "gh-deploy.test@example.com"',
+					'git config --global user.name "gh-deploy.test"',
 					
 					'cd ' + tmpPath + 'tmp',
 					'git init',
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 		},
 
 		// Configuration to be run (and then tested).
-		ghPages: {
+		ghDeploy: {
 			options: {
 				repository: '../tmp',
 				branch: 'test-branch',
@@ -75,7 +75,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('test', [
 		'clean', 
 		'prepare', 
-		'ghPages', 
+		'ghDeploy', 
 		'nodeunit',
 		'clean'
 	]);

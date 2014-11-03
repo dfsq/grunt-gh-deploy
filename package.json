@@ -1,8 +1,8 @@
 {
-	"name": "grunt-gh-pages",
-	"description": "Grunt plugin for easy deployment to Github ghPages branch.",
+	"name": "grunt-gh-deploy",
+	"description": "Grunt plugin for easy deployment to Github gh-pages branch.",
 	"version": "0.1.0",
-	"homepage": "https://github.com/dfsq/grunt-gh-pages",
+	"homepage": "https://github.com/dfsq/grunt-gh-deploy",
 	"author": {
 		"name": "Aliaksandr Astashenkau",
 		"email": "dfsq.dfsq@gmail.com",
@@ -10,15 +10,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/dfsq/grunt-gh-pages.git"
+		"url": "https://github.com/dfsq/grunt-gh-deploy.git"
 	},
 	"bugs": {
-		"url": "https://github.com/dfsq/grunt-gh-pages/issues"
+		"url": "https://github.com/dfsq/grunt-gh-deploy/issues"
 	},
 	"licenses": [
 		{
 			"type": "MIT",
-			"url": "https://github.com/dfsq/grunt-gh-pages/blob/master/LICENSE-MIT"
+			"url": "https://github.com/dfsq/grunt-gh-deploy/blob/master/LICENSE-MIT"
 		}
 	],
 	"engines": {
