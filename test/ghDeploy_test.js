@@ -15,7 +15,7 @@ exports.ghDeploy = {
 	
 	setUp: function(callback) {
 		this.command = [
-			'cd .grunt/grunt-gh-pages/tmp-ghpages',
+			'cd .grunt/grunt-gh-deploy/tmp-ghdeploy',
 			'echo $(git log --name-status --pretty=oneline -1)'
 		].join(' && ');
 		callback();

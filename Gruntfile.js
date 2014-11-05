@@ -10,22 +10,22 @@
 
 module.exports = function (grunt) {
 
-	var tmpPath = '.grunt/grunt-gh-pages/';
+	var tmpPath = '.grunt/grunt-gh-deploy/';
 	
 	// Project configuration.
 	grunt.initConfig({
 
 		// Before generating any new files, remove any previously-created files.
 		clean: {
-			tests: [tmpPath + 'tmp', tmpPath + 'dist', tmpPath + 'tmp-ghpages']
+			tests: [tmpPath + 'tmp', tmpPath + 'dist', tmpPath + 'tmp-ghdeploy']
 		},
 
 		shell: {
 			prepare: {
 				command: [
 					// Need to set up git user config
-					'git config --global user.email "gh-deploy.test@example.com"',
-					'git config --global user.name "gh-deploy.test"',
+//					'git config --global user.email "gh-deploy.test@example.com"',
+//					'git config --global user.name "gh-deploy.test"',
 					
 					'cd ' + tmpPath + 'tmp',
 					'git init',

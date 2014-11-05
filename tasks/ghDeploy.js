@@ -9,11 +9,11 @@
 'use strict';
 
 var execCmd = require('./execCmd'),
-	tmpPath = '.grunt/grunt-gh-pages/';
+	tmpPath = '.grunt/grunt-gh-deploy/';
 
 /**
  * TODO: options.message "last" to use last commit message for deployment? (git log -1 --pretty=%B)
- * TODO: how to clean up tmp-ghpages after the task? Can't do it here because tests will fail.
+ * TODO: how to clean up tmp-ghdeploy after the task? Can't do it here because tests will fail.
  */
 module.exports = function (grunt) {
 
@@ -47,10 +47,10 @@ module.exports = function (grunt) {
 		}
 
 		var command = [
-			'rm -rf ' + tmpPath + 'tmp-ghpages',
-			'mkdir -p ' + tmpPath + 'tmp-ghpages',
+			'rm -rf ' + tmpPath + 'tmp-ghdeploy',
+			'mkdir -p ' + tmpPath + 'tmp-ghdeploy',
 			
-			'cd ' + tmpPath + 'tmp-ghpages',
+			'cd ' + tmpPath + 'tmp-ghdeploy',
 			
 			'git init',
 			'git remote add -t ' + options.branch + ' -f origin ' + options.repository,
