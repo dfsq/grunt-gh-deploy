@@ -24,11 +24,12 @@ module.exports = function (grunt) {
 			prepare: {
 				command: [
 					// Need to set up git user config
-//					'git config --global user.email "gh-deploy.test@example.com"',
-//					'git config --global user.name "gh-deploy.test"',
-					
 					'cd ' + tmpPath + 'tmp',
 					'git init',
+
+					'git config user.email "gh-deploy.test.user@example.com"',
+					'git config user.name "gh-deploy.test.user"',					
+					
 					'touch test-file.txt',
 					'touch old-file.txt',
 					'git add .',
