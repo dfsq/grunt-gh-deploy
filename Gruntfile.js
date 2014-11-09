@@ -21,15 +21,17 @@ module.exports = function (grunt) {
 		},
 
 		shell: {
+			gituser: {
+				command: [
+					'git config --global user.email "gh-deploy.test.user@example.com"',
+					'git config --global user.name "gh-deploy.test.user"'
+				].join(' && ')
+			},
 			prepare: {
 				command: [
 					// Need to set up git user config
 					'cd ' + tmpPath + 'tmp',
 					'git init',
-
-					'git config user.email "gh-deploy.test.user@example.com"',
-					'git config user.name "gh-deploy.test.user"',					
-					
 					'touch test-file.txt',
 					'touch old-file.txt',
 					'git add .',
