@@ -12,7 +12,6 @@ var execCmd = require('./execCmd'),
 	tmpPath = '.grunt/grunt-gh-deploy/';
 
 /**
- * TODO: options.message "last" to use last commit message for deployment? (git log -1 --pretty=%B)
  * TODO: how to clean up tmp-ghdeploy after the task? Can't do it here because tests will fail.
  */
 module.exports = function (grunt) {
@@ -40,7 +39,7 @@ module.exports = function (grunt) {
 			grunt.fail.fatal('Deployment path is required.');
 		}
 
-		// Since deploy path is going to be use when working directory is .grunt/grunt-gh-pages/tmp-ghpages
+		// Since deploy path is going to be use when working directory is .grunt/grunt-gh-deploy/tmp-ghdeploy
 		// Need to check that deployPath is directory relatively to it 
 		if (!grunt.file.isDir(options.deployPath)) {
 			grunt.fail.fatal('Deployment path "' + options.deployPath + '" is not directory. Nothing to deploy.');
