@@ -91,4 +91,4 @@ Depending on your system git setup you may be asked to input github username and
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_ Initial basic version is released.
+2014-11-14  v0.1.0  Initial basic version is released.
