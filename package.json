@@ -1,7 +1,7 @@
 {
 	"name": "grunt-gh-deploy",
 	"description": "Grunt plugin for easy deployment to Github gh-pages branch.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"homepage": "https://github.com/dfsq/grunt-gh-deploy",
 	"author": {
 		"name": "Aliaksandr Astashenkau",
