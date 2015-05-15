@@ -76,9 +76,9 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('test', [
-		'clean', 
-		'prepare', 
-		'ghDeploy', 
+		'clean',
+		'prepare',
+		'ghDeploy',
 		'nodeunit',
 		'clean'
 	]);

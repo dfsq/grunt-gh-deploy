@@ -54,8 +54,9 @@ module.exports = function (grunt) {
 			'git init',
 			'git remote add -t ' + options.branch + ' -f origin ' + options.repository,
 			'git checkout ' + options.branch,
-			'find -not -path "./.git/*" -not -name ".git" -delete',
-			
+
+			'ls | grep -v .git | xargs rm -rf',
+
 			'cp -r ../../../' + options.deployPath + '/* ./',
 			
 			'git add -A',
