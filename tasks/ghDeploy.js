@@ -48,17 +48,23 @@ module.exports = function (grunt) {
 		var command = [
 			'rm -rf ' + tmpPath + 'tmp-ghdeploy',
 			'mkdir -p ' + tmpPath + 'tmp-ghdeploy',
-			
+
+            // Get user config before swithing to temp repo
+            'userName=`git config user.name`',
+            'userEmail=`git config user.email`',
+
 			'cd ' + tmpPath + 'tmp-ghdeploy',
 			
 			'git init',
+            'git config user.name "$userName"',
+            'git config user.email "$userEmail"',
 			'git remote add -t ' + options.branch + ' -f origin ' + options.repository,
 			'git checkout ' + options.branch,
 
 			'ls | grep -v .git | xargs rm -rf',
 
 			'cp -r ../../../' + options.deployPath + '/* ./',
-			
+
 			'git add -A',
 			'git commit -m "' + options.message + '"',
 			'git push origin ' + options.branch
